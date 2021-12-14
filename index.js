@@ -16,6 +16,12 @@ async function invokeAction({ action, id, name, email, phone }) {
         break;
 
       case 'add':
+        if (!name || !email || !phone) {
+          console.log(
+            '\x1B[33m All contact details have not been entered! Please try again.',
+          );
+          return;
+        }
         const newContact = await addContact(name, email, phone);
         console.log(newContact);
         console.log('\x1B[34m Contact added!');
