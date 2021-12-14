@@ -18,10 +18,9 @@ async function getContactById(contactId) {
 
 async function removeContact(contactId) {
   const contacts = await listContacts();
-  const newList = contacts.filter(contact => contact.id != contactId);
-  await fs.writeFile(contactsPath, JSON.stringify(newList, null, 2));
-  const newContacts = await listContacts();
-  return newContacts;
+  const updatedContacts = contacts.filter(contact => contact.id != contactId);
+  await fs.writeFile(contactsPath, JSON.stringify(updatedContacts, null, 2));
+  return updatedContacts;
 }
 
 async function addContact(name, email, phone) {
